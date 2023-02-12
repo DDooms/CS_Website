@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h2 class="text-center py-3">Skingdom</h2>
+    <p>Welcome to Skingdom, the premier online marketplace for buying and selling CS:GO skins. Our site offers a wide
+        range of skins to choose from, with new skins being added regularly. Whether you're looking for the latest and
+        greatest skins or want to sell some of your own, Skingdom is the place for you!</p>
+
+    <h2 class="text-center py-3">Contact us!</h2>
+    <form action="{% url 'send' %}" method="post" role="form">
+        {% csrf_token %}
+        <div class="col-md-6">
+            <label for="inputName" name="name" class="form-label">Your name</label>
+            <input type="text" class="form-control" id="inputName" placeholder="Ben Dover">
+        </div>
+        <div class="col-md-6">
+            <label for="inputEmail" name="email" class="form-label">Your email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="blah@gmail.com">
+        </div>
+        <div class="col-12">
+            <label for="inputSubject" name="subject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="inputSubject" placeholder="Skins">
+        </div>
+        <div class="col-md-6">
+            <div class="message-box">
+                <label for="inputCity" name="message" class="form-label">Your message</label>
+                <textarea class="form-control" id="inputCity" placeholder="I need help"></textarea>
+            </div>
+        </div>
+        <hr style="padding-bottom: 5px">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Send</button>
+        </div>
+    </form>
+
+
+    {% for message in messages %}
+        {% if message.tags == 'success' %}
+            <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+                    integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+            <script>
+                $(document).ready(function () {
+                    $("#exampleModal").modal('show');
+                });
+            </script>
+        {% endif %}
+    {% endfor %}
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="fas fa-check"></i>&nbsp;&nbsp; Perfect
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <i class="far fa-check-circle fa-5x" style="color: #a5dc86;"></i>
+                    </div>
+                    <br>
+                    <div class="mb-3"><strong>Message sent!</strong></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" style="width: 65px">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
