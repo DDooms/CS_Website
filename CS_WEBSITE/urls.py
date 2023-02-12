@@ -24,4 +24,5 @@ urlpatterns = [
     path('skins/', skins.views.index, name='skins'),
     path('gmail/', skins.views.gmail, name='gmail'),
     path('send/', skins.views.send, name='send'),
+    path('search_skins/', skins.views.search_skins, name='search_skins'),
 ]

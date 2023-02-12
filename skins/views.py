@@ -43,3 +43,12 @@ def send(request):
     messages.success(request, 'Your message has been sent successfully!')
     return redirect('home')
 
+
+def search_skins(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        skins = Skin.objects.filter(name__contains=searched)
+        return render(request, 'search_skins.html', {'searched': searched,
+                                                     'skins': skins})
+    else:
+        return render(request, 'search_skins.html', {})
