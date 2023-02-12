@@ -7,6 +7,8 @@ urlpatterns = [
     path('gmail/', views.gmail, name='gmail'),
     path('send/', views.send, name='send'),
     path('search_skins/', views.search_skins, name='search_skins'),
+    path('search_individual/', views.search_individual, name='search_individual'),
+
 ]
 
 

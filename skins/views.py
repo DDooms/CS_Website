@@ -52,3 +52,17 @@ def search_skins(request):
                                                      'skins': skins})
     else:
         return render(request, 'search_skins.html', {})
+
+
+# views.py
+def search_individual(request):
+    search_term = request.GET.get('q', '')
+    if search_term:
+        skins = Skin.objects.filter(name__contains=search_term)
+    else:
+        skins = []
+
+    return render(request, 'search_individual.html', {'skins': skins})
+
+
+
